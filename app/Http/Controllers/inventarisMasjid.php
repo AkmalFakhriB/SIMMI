@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\inventarisMasjidModel;
 
 class inventarisMasjid extends Controller
 {
@@ -13,7 +14,8 @@ class inventarisMasjid extends Controller
      */
     public function index()
     {
-        return view('inventarisMasjid/index');
+        $inventaris = inventarisMasjidModel::all();
+        return view('inventarisMasjid/index', ['inventaris'=>$inventaris]);
     }
 
     /**
@@ -23,7 +25,7 @@ class inventarisMasjid extends Controller
      */
     public function create()
     {
-        //
+        return view('inventarisMasjid/insert');
     }
 
     /**
@@ -34,7 +36,14 @@ class inventarisMasjid extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // print_r($request->input());
+        $inventaris = new inventarisMasjidModel;
+        $inventaris->Uraian = $request->Uraian;
+        $inventaris->Satuan = 'Buah';
+        $inventaris->Kuantitas = $request->Kuantitas;
+        $inventaris->Kondisi = 'Baik';
+        $inventaris->save();
+        return view('inventarisMasjid/insert');
     }
 
     /**

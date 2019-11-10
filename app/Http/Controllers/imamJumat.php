@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\imamJumatModel;
 
 class imamJumat extends Controller
 {
@@ -13,7 +15,8 @@ class imamJumat extends Controller
      */
     public function index()
     {
-        return view('imamJumat/index');
+        $imam=imamJumatModel::all();
+        return view('imamJumat/index', ['imam'=>$imam]);
     }
 
     /**
@@ -23,7 +26,7 @@ class imamJumat extends Controller
      */
     public function create()
     {
-        //
+        return view('imamJumat/insert');
     }
 
     /**
@@ -34,7 +37,15 @@ class imamJumat extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // print_r($request->input());
+        $imam = new imamJumatModel;
+        $imam->JumatKe = $request->JumatKe;
+        $imam->Tanggal = $request->Tanggal;
+        $imam->Imam = $request->Imam;
+        $imam->Asal = $request->Asal;
+        $imam->Muadzin = $request->Muadzin;
+        $imam->save();
+        return view('imamJumat/insert');
     }
 
     /**

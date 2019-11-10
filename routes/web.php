@@ -23,6 +23,11 @@ Route::get('/keuangan', 'keuangan@index')->name('keuanganIndex');
 Route::get('/inventarisMasjid', 'inventarisMasjid@index')->name('inventarisMasjidIndex');
 Route::get('/jadwalKajian', 'jadwalKajian@index')->name('jadwalKajianIndex');
 Route::get('/parkir', 'parkir@index')->name('parkirIndex');
+Route::get('/imamJumat/insert', 'imamJumat@create')->name('imamJumatCreate');
+Route::post('/imamJumat/submit', 'imamJumat@store');
+Route::get('/inventarisMasjid/insert', 'inventarisMasjid@create')->name('inventarisMasjidCreate');
+Route::post('/inventarisMasjid/submit', 'inventarisMasjid@store');
+
 
 
 
