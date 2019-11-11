@@ -23,13 +23,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($inventaris as $inventaris)
+                    @foreach ($inventaris as $inventariss)
                         <tr>
-                            <td>{{$inventaris->JumatKe}}</td>
-                            <td>{{$inventaris->Tanggal}}</td>
-                            <td>{{$inventaris->Imam}}</td>
-                            <td>{{$inventaris->Asal}}</td>
-                            <td>{{$inventaris->Muadzin}}</td>
+                            <td>{{$inventariss->id}}</td>
+                            <td>{{$inventariss->Uraian}}</td>
+                            <td>{{$inventariss->Satuan}}</td>
+                            <td>{{$inventariss->Kuantitas}}</td>
+                            <td>{{$inventariss->Kondisi}}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -38,10 +38,5 @@
     
         <div class="column" style="width:25%">Column 3</div>
     </div>
-    
-    <script>
-        $(document).ready(function(){
-            $('#tabel-imam').DataTable();
-        });
-    </script>
+
 @endsection

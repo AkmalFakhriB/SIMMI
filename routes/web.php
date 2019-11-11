@@ -27,7 +27,7 @@ Route::get('/imamJumat/insert', 'imamJumat@create')->name('imamJumatCreate');
 Route::post('/imamJumat/submit', 'imamJumat@store');
 Route::get('/inventarisMasjid/insert', 'inventarisMasjid@create')->name('inventarisMasjidCreate');
 Route::post('/inventarisMasjid/submit', 'inventarisMasjid@store');
-
-
+Route::get('/jadwalKajian/insert', 'jadwalKajian@create')->name('jadwalKajianCreate');
+Route::post('/jadwalKajian/submit', 'jadwalKajian@store');
 
 

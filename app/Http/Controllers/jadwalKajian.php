@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\jadwalKajianModel;
 
 class jadwalKajian extends Controller
 {
@@ -13,7 +14,8 @@ class jadwalKajian extends Controller
      */
     public function index()
     {
-        return view('jadwalKajian/index');
+        $data = jadwalKajianModel::all();
+        return view('jadwalKajian/index', ['data'=>$data]);
     }
 
     /**
@@ -23,7 +25,7 @@ class jadwalKajian extends Controller
      */
     public function create()
     {
-        //
+        return view('jadwalKajian/insert');
     }
 
     /**
@@ -34,7 +36,15 @@ class jadwalKajian extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // print_r($request->input());
+        $data = new jadwalKajianModel;
+        $data->Hari = $request->Hari;
+        $data->Waktu = '0'.$request->WaktuMulai.'.00 - 0'.$request->WaktuSelesai.'.00';
+        $data->Uraian = $request->Uraian;
+        $data->Pengisi = $request->Pengisi;
+        $data->PenanggungJawab = $request->PJ;
+        $data->save();
+        return view('jadwalKajian/insert');
     }
 
     /**
