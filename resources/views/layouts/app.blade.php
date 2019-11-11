@@ -78,6 +78,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('parkirPendaftar') }}">
+                                        Lihat Pendaftar
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -101,7 +104,7 @@
     </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" defer></script>
 <script>
     $(document).ready( function () {
         $('#tabel-imam').DataTable();

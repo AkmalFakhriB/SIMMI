@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\parkirModel;
 
 class parkir extends Controller
 {
@@ -21,9 +22,10 @@ class parkir extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function lihatPendaftar()
     {
-        //
+        $data = parkirModel::where('StatusValidasi', '0')->get();
+        return view('parkir/daftar', ['data'=>$data]);
     }
 
     /**
@@ -34,7 +36,23 @@ class parkir extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // print_r($request->input());
+        $data = new parkirModel;
+        $data->Name = $request->Name;
+        $data->NoKTP = $request->NoKTP;
+        $data->NoHP = $request->NoHP;
+        $data->NoPol = $request->NoPol;
+        $data->StatusValidasi = '0';
+        $data->save();
+        return view('parkir/index');
+    }
+
+    public function validasi(Request $request)
+    {
+        // echo $request->NoKTP; die();
+        parkirModel::where('NoKTP', $request->NoKTP)
+        ->update(['StatusValidasi'=>'1']);
+        return redirect()->back();
     }
 
     /**

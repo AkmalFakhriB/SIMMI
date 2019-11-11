@@ -12,7 +12,7 @@
     </div>
 
     <div class="column" style="width:50%; height:100%; background-color:white">
-        <table id="tabel-imam">
+        <table id="tabel-imam" class="cell-border compact hover">
             <thead>
                 <tr>
                     <th>Jumat Ke-</th>
