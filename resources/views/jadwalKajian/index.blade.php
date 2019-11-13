@@ -26,7 +26,7 @@
                 @foreach ($data as $datas)
                     <tr>
                         <td>{{$datas->Hari}}</td>
-                        <td>{{$datas->Waktu}}</td>
+                        <td>{{$datas->WaktuMulai}}.00 - {{$datas->WaktuSelesai}}.00</td>
                         <td>{{$datas->Uraian}}</td>
                         <td>{{$datas->Pengisi}}</td>
                         <td>{{$datas->PenanggungJawab}}</td>

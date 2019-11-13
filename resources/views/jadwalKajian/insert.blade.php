@@ -4,32 +4,66 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        @isset($alert)
+            <div class="alert alert-danger">
+                {{$alert}}
+            </div>
+        @endisset
+        @isset($success)
+            <div class="alert alert-success">
+                {{$success}}
+            </div>
+        @endisset
             <div class="card">
                 <div class="card-header">Menambah Jadwal Kajian</div>
                 <div class="card-body">
-                    <form action="submit" method="POST">
+                    <form action="{{route('jadwalKajianSubmit')}}" method="POST">
                         @csrf
-                        <select name="Hari">
-                            <option value="Senin">Senin</option>
-                            <option value="Selasa">Selasa</option>
-                            <option value="Rabu">Rabu</option>
-                            <option value="Kamis">Kamis</option>
-                            <option value="Jumat">Jumat</option>
-                            <option value="Sabtu">Sabtu</option>
-                            <option value="Minggu">Minggu</option>
-                        </select>
-                        <br>
-                        <input type="number" name="WaktuMulai" placeholder="Waktu Mulai Kegiatan" min="8" max="20">
-                        <br>
-                        <input type="number" name="WaktuSelesai" placeholder="Waktu Selesai Kegiatan" min="9" max="21">
-                        <br>
-                        <input type="text" name="Uraian" placeholder="Detail Acara">
-                        <br>
-                        <input type="text" name="Pengisi" placeholder="Pengisi Acara">
-                        <br>
-                        <input type="text" name="PJ" placeholder="Penanggung Jawab">
-                        <br>
-                        <button type="submit">Submit data</button>
+                        <div class="form-group row">
+                        <label class="col-md-4" for="sel1">Pilih Hari</label>
+                            <div class="col-md-3">
+                                <select class="form-control" id="sel1" name="Hari">
+                                    <option value="Senin">Senin</option>
+                                    <option value="Selasa">Selasa</option>
+                                    <option value="Rabu">Rabu</option>
+                                    <option value="Kamis">Kamis</option>
+                                    <option value="Jumat">Jumat</option>
+                                    <option value="Sabtu">Sabtu</option>
+                                    <option value="Minggu">Minggu</option>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-md-left">Waktu Mulai Kegiatan</label>
+                            <div class="col-md-2">
+                                <input type="number" class="form-control" name="WaktuMulai" min="8" max="20" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-md-left">Waktu Selesai Kegiatan</label>
+                            <div class="col-md-2">
+                                <input type="number" class="form-control" name="WaktuSelesai" min="9" max="21" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-md-left">Keterangan Kegiatan</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="Uraian" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-md-left">Nama Pengisi Acara</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="Pengisi" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-md-left">Nama Penanggung Jawab</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="PJ" required>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Submit data</button>
                     </form>
                 </div>
             </div>

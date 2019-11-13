@@ -41,9 +41,10 @@ class inventarisMasjid extends Controller
         $inventaris->Uraian = $request->Uraian;
         $inventaris->Satuan = 'Buah';
         $inventaris->Kuantitas = $request->Kuantitas;
-        $inventaris->Kondisi = 'Baik';
+        $inventaris->Kondisi = $request->Kondisi;
+        $success = 'Submit Data Berhasil dilakukan';
         $inventaris->save();
-        return view('inventarisMasjid/insert');
+        return view('inventarisMasjid/insert', ['success'=>$success]);
     }
 
     /**

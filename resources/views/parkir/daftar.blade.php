@@ -7,6 +7,11 @@
     </div>
 
     <div class="column" style="width:50%; height:100%; background-color:white">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
         <table id="tabel-imam" class="cell-border compact hover">
             <thead>
                 <tr>
@@ -27,8 +32,8 @@
                         <td>
                             <form action="{{route('parkirValidate')}}" method="POST">
                                 @csrf
-                                <input type="text" value="{{$datas->NoKTP}}" name="NoKTP" hidden>
-                                <button type="submit">Validate</button>
+                                <input type="text" value="{{$datas->id}}" name="id" hidden>
+                                <button class="btn btn-success" type="submit">Validate</button>
                             </form>
                         </td>
                     </tr>

@@ -28,7 +28,7 @@ Route::post('/imamJumat/submit', 'imamJumat@store');
 Route::get('/inventarisMasjid/insert', 'inventarisMasjid@create')->name('inventarisMasjidCreate');
 Route::post('/inventarisMasjid/submit', 'inventarisMasjid@store');
 Route::get('/jadwalKajian/insert', 'jadwalKajian@create')->name('jadwalKajianCreate');
-Route::post('/jadwalKajian/submit', 'jadwalKajian@store');
+Route::post('/jadwalKajian/submit', 'jadwalKajian@store')->name('jadwalKajianSubmit');
 Route::post('/parkir/submit',  'parkir@store')->name('parkirSubmit');
 Route::get('/parkir/pendaftar', 'parkir@lihatPendaftar')->name('parkirPendaftar');
 Route::post('/parkir/validate', 'parkir@validasi')->name('parkirValidate');

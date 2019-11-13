@@ -23,13 +23,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 </head>
-<body style="padding-right: 3%;padding-left: 3%">
-    <div id="header" style="padding-left:3%;padding-bottom:3%;padding-top:3%">
+<body>
+    <div class="jumbotron" style="margin-bottom: 0px;padding-bottom: 0px;padding-top:2rem">
         <li style="display:inline;font-size:150%"> SIMMI </li>
         <li style="display:inline;font-size:90%"> Sistem Informasi Masjid Manarul Ilmi</li>
-    </div>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="margin-top:2rem">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ 'Home' }}
@@ -97,7 +95,8 @@
                 </div>
             </div>
         </nav>
-
+    </div>
+    <div style="padding-left:3cm;padding-rigth:3cm" id="app">
         <main class="py-4">
             @yield('content')
         </main>

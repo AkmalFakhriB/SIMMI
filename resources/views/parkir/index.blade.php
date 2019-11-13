@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        @isset($success)
+            <div class="alert alert-success">
+                {{$success}}
+            </div>
+        @endisset
             <div class="card">
                 <div class="card-header">Mendaftar Kartu Parkir</div>
                 <div class="card-body">
@@ -33,7 +38,7 @@
                                 <input type="text" class="form-control" name="NoPol" maxlength="10" autofocus required>
                             </div>
                         </div>
-                        <button type="submit">Submit data</button>
+                        <button class="btn btn-primary" type="submit">Submit data</button>
                     </form>
                 </div>
             </div>

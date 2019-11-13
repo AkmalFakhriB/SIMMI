@@ -16,7 +16,8 @@ class CreateJadwalKajianModelsTable extends Migration
         Schema::create('jadwal_kajian_models', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('Hari');
-            $table->string('Waktu');
+            $table->string('WaktuMulai');
+            $table->string('WaktuSelesai');
             $table->string('Uraian');
             $table->string('Pengisi');
             $table->string('PenanggungJawab');

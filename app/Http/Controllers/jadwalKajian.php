@@ -39,12 +39,27 @@ class jadwalKajian extends Controller
         // print_r($request->input());
         $data = new jadwalKajianModel;
         $data->Hari = $request->Hari;
-        $data->Waktu = '0'.$request->WaktuMulai.'.00 - 0'.$request->WaktuSelesai.'.00';
+        $data->WaktuMulai = $request->WaktuMulai;
+        $data->WaktuSelesai = $request->WaktuSelesai;
         $data->Uraian = $request->Uraian;
         $data->Pengisi = $request->Pengisi;
         $data->PenanggungJawab = $request->PJ;
-        $data->save();
-        return view('jadwalKajian/insert');
+        if ($data->WaktuMulai == $data->WaktuSelesai) 
+        {
+            $alert = 'Minimal Durasi Kajian 1 Jam';
+            return view('jadwalKajian/insert', ['alert'=>$alert]);
+        } 
+        elseif ($data->WaktuMulai > $data->WaktuSelesai)
+        {
+            $alert = 'Waktu Mulai Harus Lebih Kecil dari Waktu Selesai';
+            return view('jadwalKajian/insert', ['alert'=>$alert]);
+        } 
+        else 
+        {
+            $success = 'Submit Data Berhasil dilakukan';
+            $data->save();
+            return view('jadwalKajian/insert', ['success'=>$success]);
+        }
     }
 
     /**

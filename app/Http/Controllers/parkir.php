@@ -43,16 +43,17 @@ class parkir extends Controller
         $data->NoHP = $request->NoHP;
         $data->NoPol = $request->NoPol;
         $data->StatusValidasi = '0';
+        $success = 'Submit Data Berhasil dilakukan';
         $data->save();
-        return view('parkir/index');
+        return view('parkir/index', ['success'=>$success]);
     }
 
     public function validasi(Request $request)
     {
-        // echo $request->NoKTP; die();
-        parkirModel::where('NoKTP', $request->NoKTP)
+        // echo $request->id; die();
+        parkirModel::where('id', $request->id)
         ->update(['StatusValidasi'=>'1']);
-        return redirect()->back();
+        return redirect('parkir/pendaftar')->with('status', 'Validasi telah berhasil di lakukan');
     }
 
     /**
