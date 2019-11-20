@@ -38,28 +38,30 @@ class jadwalKajian extends Controller
     {
         // print_r($request->input());
         $data = new jadwalKajianModel;
-        $data->Hari = $request->Hari;
-        $data->WaktuMulai = $request->WaktuMulai;
-        $data->WaktuSelesai = $request->WaktuSelesai;
-        $data->Uraian = $request->Uraian;
-        $data->Pengisi = $request->Pengisi;
-        $data->PenanggungJawab = $request->PJ;
-        if ($data->WaktuMulai == $data->WaktuSelesai) 
-        {
-            $alert = 'Minimal Durasi Kajian 1 Jam';
-            return view('jadwalKajian/insert', ['alert'=>$alert]);
-        } 
-        elseif ($data->WaktuMulai > $data->WaktuSelesai)
-        {
-            $alert = 'Waktu Mulai Harus Lebih Kecil dari Waktu Selesai';
-            return view('jadwalKajian/insert', ['alert'=>$alert]);
-        } 
-        else 
-        {
+        $data->nama_kajian = $request->nama_kajian;
+        $data->tanggal_kajian = $request->tanggal_kajian;
+        $data->waktu_awal = $request->waktu_awal;
+        $data->waktu_akhir = $request->waktu_akhir;
+        $data->uraian = $request->uraian;
+        $data->pengisi = $request->pengisi;
+        $data->penanggung_jawab = $request->penanggung_jawab;
+        $data->status = '0';
+        // if ($data->WaktuMulai == $data->WaktuSelesai) 
+        // {
+        //     $alert = 'Minimal Durasi Kajian 1 Jam';
+        //     return view('jadwalKajian/insert', ['alert'=>$alert]);
+        // } 
+        // elseif ($data->WaktuMulai > $data->WaktuSelesai)
+        // {
+        //     $alert = 'Waktu Mulai Harus Lebih Kecil dari Waktu Selesai';
+        //     return view('jadwalKajian/insert', ['alert'=>$alert]);
+        // } 
+        // else 
+        // {
             $success = 'Submit Data Berhasil dilakukan';
             $data->save();
             return view('jadwalKajian/insert', ['success'=>$success]);
-        }
+        // }
     }
 
     /**

@@ -4,20 +4,15 @@
 <div class="row" style="padding-left: 1%;padding-right: 1%">
     <div class="column" style="width:25%;background-color:#f2f2f2">
         Column 1
-        @guest
-
-        @else
-            <a href="{{route('jadwalKajianCreate')}}">insert data baru</a>
-        @endguest
     </div>
 
     <div class="column" style="width:50%; height:100%; background-color:white">
         <table id="tabel-imam" class="cell-border compact hover">
             <thead>
                 <tr>
-                    <th>Hari</th>
-                    <th>Waktu</th>
-                    <th>Uraian</th>
+                    <th>Nama Kajian</th>
+                    <th>Tanggal</th>
+                    <th>Jam</th>
                     <th>Pengisi</th>
                     <th>Penanggung Jawab</th>
                 </tr>
@@ -25,11 +20,11 @@
             <tbody>
                 @foreach ($data as $datas)
                     <tr>
-                        <td>{{$datas->Hari}}</td>
-                        <td>{{$datas->WaktuMulai}}.00 - {{$datas->WaktuSelesai}}.00</td>
-                        <td>{{$datas->Uraian}}</td>
-                        <td>{{$datas->Pengisi}}</td>
-                        <td>{{$datas->PenanggungJawab}}</td>
+                        <td>{{$datas->nama_kajian}}</td>
+                        <td>{{$datas->tanggal_kajian}}</td>
+                        <td>{{$datas->waktu_awal}} - {{$datas->waktu_akhir}}</td>
+                        <td>{{$datas->pengisi}}</td>
+                        <td>{{$datas->penanggung_jawab}}</td>
                     </tr>
                 @endforeach
             </tbody>

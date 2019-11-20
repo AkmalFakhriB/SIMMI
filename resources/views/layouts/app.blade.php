@@ -27,7 +27,7 @@
     <div class="jumbotron" style="margin-bottom: 0px;padding-bottom: 0px;padding-top:2rem">
         <li style="display:inline;font-size:150%"> SIMMI </li>
         <li style="display:inline;font-size:90%"> Sistem Informasi Masjid Manarul Ilmi</li>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="margin-top:2rem">
+        <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm" style="margin-top:2rem">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ 'Home' }}
@@ -81,6 +81,9 @@
                                     </a>
                                     <a class="dropdown-item" href="{{route('inventarisMasjidCreate')}}">
                                         Menambah Daftar Inventaris
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('jadwalKajianCreate')}}">
+                                        Menambah Jadwal Kajian
                                     </a>
                                     <a class="dropdown-item" href="{{ route('parkirPendaftar') }}">
                                         Lihat Pendaftar
