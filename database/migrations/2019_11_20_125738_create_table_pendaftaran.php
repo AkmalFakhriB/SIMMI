@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableImamJumatModels extends Migration
+class CreateTablePendaftaran extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AlterTableImamJumatModels extends Migration
      */
     public function up()
     {
-        Schema::table('imam_jumat_models', function (Blueprint $table) {
-            $table->string('JumatKe', 1)->change();
+        Schema::create('table_pendaftaran', function (Blueprint $table) {
+            $table->bigIncrements('id_pendaftaran');
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_kajian_acara');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ class AlterTableImamJumatModels extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('table_pendaftaran');
     }
 }

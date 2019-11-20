@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInventarisMasjidModelsTable extends Migration
+class CreateTableInventaris extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateInventarisMasjidModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventaris_masjid_models', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('Uraian');
-            $table->string('Satuan');
-            $table->integer('Kuantitas');
-            $table->string('Kondisi');
+        Schema::create('inventaris', function (Blueprint $table) {
+            $table->bigIncrements('id_inventaris');
+            $table->string('uraian');
+            $table->string('satuan', 20);
+            $table->integer('kuantitas');
+            $table->string('kondisi', 20);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateInventarisMasjidModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventaris_masjid_models');
+        Schema::dropIfExists('inventaris');
     }
 }

@@ -15,7 +15,7 @@ class imamJumat extends Controller
      */
     public function index()
     {
-        $imam=imamJumatModel::where('StatusDelete', '0')->get();
+        $imam=imamJumatModel::where('status', '0')->get();
         return view('imamJumat/index', ['imam'=>$imam]);
     }
 
@@ -39,12 +39,10 @@ class imamJumat extends Controller
     {
         // print_r($request->input());
         $imam = new imamJumatModel;
-        $imam->JumatKe = $request->JumatKe;
-        $imam->Tanggal = $request->Tanggal;
-        $imam->Imam = $request->Imam;
-        $imam->Asal = $request->Asal;
-        $imam->Muadzin = $request->Muadzin;
-        $imam->StatusDelete = '0';
+        $imam->tanggal = $request->tanggal;
+        $imam->nama_imam = $request->imam;
+        $imam->muadzin = $request->muadzin;
+        $imam->status = '0';
         $success = 'Insert data berhasil dilakukan';
         $imam->save();
         return view('imamJumat/insert', ['success'=>$success]);
@@ -52,8 +50,8 @@ class imamJumat extends Controller
 
     public function delete(Request $request)
     {
-        imamJumatModel::where('id', $request->id)
-        ->update(['StatusDelete'=>'1']);
+        imamJumatModel::where('id_imam_jumat', $request->id_imam_jumat)
+        ->update(['status'=>'1']);
         return redirect('imamJumat')->with('status', 'Delete telah berhasil dilakukan');
     }
 
@@ -76,7 +74,7 @@ class imamJumat extends Controller
      */
     public function edit(Request $request)
     {
-        $data = imamJumatModel::where('id', $request->id)->firstorfail();
+        $data = imamJumatModel::where('id_imam_jumat', $request->id_imam_jumat)->firstorfail();
         return view('imamJumat/update', ['data'=>$data]);
     }
 
@@ -90,13 +88,11 @@ class imamJumat extends Controller
     public function update(Request $request)
     {
         // dd($request->JumatKe);
-        imamJumatModel::where('id', $request->id)
+        imamJumatModel::where('id_imam_jumat', $request->id_imam_jumat)
         ->update([
-            'JumatKe'=> $request->JumatKe,
-            'Tanggal'=> $request->Tanggal,
-            'Imam'=> $request->Imam,
-            'Asal'=> $request->Asal,
-            'Muadzin'=> $request->Muadzin
+            'tanggal'=> $request->tanggal,
+            'nama_imam'=> $request->imam,
+            'muadzin'=> $request->muadzin
         ]);
         return redirect('imamJumat')->with('status', 'Update telah berhasil dilakukan');
     }

@@ -4,11 +4,6 @@
 <div class="row" style="padding-left: 1%;padding-right: 1%">
     <div class="column" style="width:25%;background-color:#f2f2f2">
         Column 1
-        @guest
-
-        @else
-            <a href="{{route('imamJumatCreate')}}">insert data baru</a>
-        @endguest
     </div>
 
     <div class="column" style="width:50%; height:100%; background-color:white">
@@ -20,10 +15,8 @@
         <table id="tabel-imam" class="cell-border compact hover">
             <thead>
                 <tr>
-                    <th>Jumat Ke-</th>
                     <th>Tanggal</th>
                     <th>Imam</th>
-                    <th>Asal</th>
                     <th>Muadzin</th>
                     @guest
 
@@ -36,25 +29,23 @@
             <tbody>
                 @foreach ($imam as $imams)
                     <tr>
-                        <td>{{$imams->JumatKe}}</td>
-                        <td>{{$imams->Tanggal}}</td>
-                        <td>{{$imams->Imam}}</td>
-                        <td>{{$imams->Asal}}</td>
-                        <td>{{$imams->Muadzin}}</td>
+                        <td>{{$imams->tanggal}}</td>
+                        <td>{{$imams->nama_imam}}</td>
+                        <td>{{$imams->muadzin}}</td>
                         @guest
 
                         @else
                             <td>
                                 <form action="{{route('imamJumatEdit')}}" method="POST">
                                     @csrf
-                                    <input type="text" value="{{$imams->id}}" name="id" hidden>
+                                    <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
                                     <button class="btn btn-success" type="submit">Update</button>
                                 </form>
                             </td>
                             <td>
                                 <form action="{{route('imamJumatDelete')}}" method="POST">
                                     @csrf
-                                    <input type="text" value="{{$imams->id}}" name="id" hidden>
+                                    <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                 </form>
                             </td>
