@@ -38,13 +38,18 @@ class inventarisMasjid extends Controller
     {
         // print_r($request->input());
         $inventaris = new inventarisMasjidModel;
-        $inventaris->Uraian = $request->Uraian;
-        $inventaris->Satuan = 'Buah';
-        $inventaris->Kuantitas = $request->Kuantitas;
-        $inventaris->Kondisi = $request->Kondisi;
+        $inventaris->uraian = $request->uraian;
+        $inventaris->satuan = 'Buah';
+        $inventaris->kuantitas = $request->kuantitas;
+        $inventaris->kondisi = $request->kondisi;
         $success = 'Submit Data Berhasil dilakukan';
         $inventaris->save();
         return view('inventarisMasjid/insert', ['success'=>$success]);
+    }
+
+    public function delete(Request $request)
+    {
+        
     }
 
     /**
@@ -64,9 +69,10 @@ class inventarisMasjid extends Controller
      * @param  \App\inventarisMasjid  $inventarisMasjid
      * @return \Illuminate\Http\Response
      */
-    public function edit(inventarisMasjid $inventarisMasjid)
+    public function edit(Request $request)
     {
-        //
+        $data = inventarisMasjidModel::where('id_inventaris', $request->id_inventaris)->firstorfail();
+        return view('inventarisMasjid/update', ['data'=>$data]);
     }
 
     /**
@@ -76,9 +82,16 @@ class inventarisMasjid extends Controller
      * @param  \App\inventarisMasjid  $inventarisMasjid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, inventarisMasjid $inventarisMasjid)
+    public function update(Request $request)
     {
-        //
+        inventarisMasjidModel::where('id_inventaris', $request->id_inventaris)
+        ->update([
+            'uraian' => $request->uraian,
+            'satuan' => $request->satuan,
+            'kuantitas' => $request->kuantitas,
+            'kondisi' => $request->kondisi
+        ]);
+        return redirect('inventarisMasjid')->with('status', 'Update telah berhasil dilakukan');
     }
 
     /**

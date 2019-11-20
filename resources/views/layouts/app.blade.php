@@ -79,6 +79,9 @@
                                     <a class="dropdown-item" href="{{route('imamJumatCreate')}}">
                                         Menambah Jadwal Imam
                                     </a>
+                                    <a class="dropdown-item" href="{{route('inventarisMasjidCreate')}}">
+                                        Menambah Daftar Inventaris
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('parkirPendaftar') }}">
                                         Lihat Pendaftar
                                     </a>
