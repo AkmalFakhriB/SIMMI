@@ -15,7 +15,7 @@ class imamJumat extends Controller
      */
     public function index()
     {
-        $imam=imamJumatModel::all();
+        $imam=imamJumatModel::where('StatusDelete', '0')->get();
         return view('imamJumat/index', ['imam'=>$imam]);
     }
 
@@ -44,8 +44,17 @@ class imamJumat extends Controller
         $imam->Imam = $request->Imam;
         $imam->Asal = $request->Asal;
         $imam->Muadzin = $request->Muadzin;
+        $imam->StatusDelete = '0';
+        $success = 'Insert data berhasil dilakukan';
         $imam->save();
-        return view('imamJumat/insert');
+        return view('imamJumat/insert', ['success'=>$success]);
+    }
+
+    public function delete(Request $request)
+    {
+        imamJumatModel::where('id', $request->id)
+        ->update(['StatusDelete'=>'1']);
+        return redirect('imamJumat')->with('status', 'Delete telah berhasil dilakukan');
     }
 
     /**
@@ -65,9 +74,10 @@ class imamJumat extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $data = imamJumatModel::where('id', $request->id)->firstorfail();
+        return view('imamJumat/update', ['data'=>$data]);
     }
 
     /**
@@ -77,11 +87,19 @@ class imamJumat extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // dd($request->JumatKe);
+        imamJumatModel::where('id', $request->id)
+        ->update([
+            'JumatKe'=> $request->JumatKe,
+            'Tanggal'=> $request->Tanggal,
+            'Imam'=> $request->Imam,
+            'Asal'=> $request->Asal,
+            'Muadzin'=> $request->Muadzin
+        ]);
+        return redirect('imamJumat')->with('status', 'Update telah berhasil dilakukan');
     }
-
     /**
      * Remove the specified resource from storage.
      *

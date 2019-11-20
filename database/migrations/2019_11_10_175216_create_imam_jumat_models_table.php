@@ -20,6 +20,7 @@ class CreateImamJumatModelsTable extends Migration
             $table->string('Imam');
             $table->string('Asal');
             $table->string('Muadzin');
+            $table->string('StatusDelete', 1);
         });
     }
 
