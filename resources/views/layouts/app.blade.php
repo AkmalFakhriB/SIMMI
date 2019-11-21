@@ -76,6 +76,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->isAdmin())
                                     <a class="dropdown-item" href="{{route('imamJumatCreate')}}">
                                         Menambah Jadwal Imam
                                     </a>
@@ -87,7 +88,8 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('parkirPendaftar') }}">
                                         Lihat Pendaftar
-                                    </a>
+                                    </a>                                    
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -117,6 +119,8 @@
     $(document).ready( function () {
         $('#tabel-imam').DataTable();
     } );
+
+    $('#input_starttime').pickatime({});
 </script>
 </body>
 </html>

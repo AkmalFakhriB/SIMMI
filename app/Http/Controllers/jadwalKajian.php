@@ -46,11 +46,11 @@ class jadwalKajian extends Controller
         $data->pengisi = $request->pengisi;
         $data->penanggung_jawab = $request->penanggung_jawab;
         $data->status = '0';
-        // if ($data->WaktuMulai == $data->WaktuSelesai) 
-        // {
-        //     $alert = 'Minimal Durasi Kajian 1 Jam';
-        //     return view('jadwalKajian/insert', ['alert'=>$alert]);
-        // } 
+        if ($data->waktu_awal == $data->waktu_akhir) 
+        {
+            $alert = 'Minimal Durasi Kajian 1 jam';
+            return view('jadwalKajian/insert', ['alert'=>$alert]);
+        } 
         // elseif ($data->WaktuMulai > $data->WaktuSelesai)
         // {
         //     $alert = 'Waktu Mulai Harus Lebih Kecil dari Waktu Selesai';
@@ -81,9 +81,10 @@ class jadwalKajian extends Controller
      * @param  \App\jadwalKajian  $jadwalKajian
      * @return \Illuminate\Http\Response
      */
-    public function edit(jadwalKajian $jadwalKajian)
+    public function edit(Request $request)
     {
-        //
+        $data = jadwalKajianModel::where('id_kajian_acara', $request->id_kajian_acara)->firstorfail();
+        return view('jadwalKajian/update', ['data'=>$data]);
     }
 
     /**
@@ -93,9 +94,19 @@ class jadwalKajian extends Controller
      * @param  \App\jadwalKajian  $jadwalKajian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, jadwalKajian $jadwalKajian)
+    public function update(Request $request)
     {
-        //
+        jadwalKajianModel::where('id_kajian_acara', $request->id_kajian_acara)
+        ->update([
+            'nama_kajian' => $request->nama_kajian,
+            'tanggal_kajian' => $request->tanggal_kajian,
+            'waktu_awal' => $request->waktu_awal,
+            'waktu_akhir' => $request->waktu_akhir,
+            'uraian' => $request->uraian,
+            'pengisi' => $request->pengisi,
+            'penanggung_jawab' => $request->penanggung_jawab
+        ]);
+        return redirect('jadwalKajian')->with('status', 'Update telah berhasil dilakukan');
     }
 
     /**

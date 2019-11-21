@@ -7,6 +7,11 @@
     </div>
 
     <div class="column" style="width:50%; height:100%; background-color:white">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         <table id="tabel-imam" class="cell-border compact hover">
             <thead>
                 <tr>
@@ -15,6 +20,12 @@
                     <th>Jam</th>
                     <th>Pengisi</th>
                     <th>Penanggung Jawab</th>
+                    @guest
+
+                    @else
+                        <th>Update</th>
+                        {{-- <th>Delete</th> --}}
+                    @endguest
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +36,24 @@
                         <td>{{$datas->waktu_awal}} - {{$datas->waktu_akhir}}</td>
                         <td>{{$datas->pengisi}}</td>
                         <td>{{$datas->penanggung_jawab}}</td>
+                        @guest
+
+                        @else
+                            <td>
+                                <form action="{{route('jadwalKajianEdit')}}" method="POST">
+                                    @csrf
+                                    <input type="text" value="{{$datas->id_kajian_acara}}" name="id_kajian_acara" hidden>
+                                    <button class="btn btn-success" type="submit">Update</button>
+                                </form>
+                            </td>
+                            {{-- <td>
+                                <form action="{{route('imamJumatDelete')}}" method="POST">
+                                    @csrf
+                                    <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </td> --}}
+                        @endguest
                     </tr>
                 @endforeach
             </tbody>
@@ -33,10 +62,4 @@
 
     <div class="column" style="width:25%">Column 3</div>
 </div>
-
-<script>
-    $(document).ready(function(){
-        $('#tabel-imam').DataTable();
-    });
-</script>
 @endsection
