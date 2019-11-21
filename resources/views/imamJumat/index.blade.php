@@ -18,12 +18,10 @@
                     <th>Tanggal</th>
                     <th>Imam</th>
                     <th>Muadzin</th>
-                    @guest
-
-                    @else
-                        <th>Update</th>
-                        <th>Delete</th>
-                    @endguest
+                    @if (Auth::user()->isAdmin())
+                    <th>Update</th>
+                    <th>Delete</th>    
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -32,24 +30,22 @@
                         <td>{{$imams->tanggal}}</td>
                         <td>{{$imams->nama_imam}}</td>
                         <td>{{$imams->muadzin}}</td>
-                        @guest
-
-                        @else
-                            <td>
-                                <form action="{{route('imamJumatEdit')}}" method="POST">
-                                    @csrf
-                                    <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
-                                    <button class="btn btn-success" type="submit">Update</button>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="{{route('imamJumatDelete')}}" method="POST">
-                                    @csrf
-                                    <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
-                            </td>
-                        @endguest
+                        @if (Auth::user()->isAdmin())
+                        <td>
+                            <form action="{{route('imamJumatEdit')}}" method="POST">
+                                @csrf
+                                <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
+                                <button class="btn btn-success" type="submit">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{route('imamJumatDelete')}}" method="POST">
+                                @csrf
+                                <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </td>   
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

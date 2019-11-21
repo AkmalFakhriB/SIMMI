@@ -16,23 +16,23 @@
             <thead>
                 <tr>
                     <th>Nama</th>
-                    <th>No KTP</th>
-                    <th>No HP</th>
-                    <th>No Pol</th>
+                    <th>Merk Motor</th>
+                    <th>Plat Nomor</th>
+                    <th>Warna Motor</th>
                     <th>Validasi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($data as $datas)
                     <tr>
-                        <td>{{$datas->Name}}</td>
-                        <td>{{$datas->NoKTP}}</td>
-                        <td>{{$datas->NoHP}}</td>
-                        <td>{{$datas->NoPol}}</td>
+                        <td>{{strtoupper($datas->name)}}</td>
+                        <td>{{strtoupper($datas->merk_motor)}}</td>
+                        <td>{{strtoupper($datas->plat_nomor)}}</td>
+                        <td>{{strtoupper($datas->warna_motor)}}</td>
                         <td>
                             <form action="{{route('parkirValidate')}}" method="POST">
                                 @csrf
-                                <input type="text" value="{{$datas->id}}" name="id" hidden>
+                                <input type="text" value="{{$datas->id_parkir}}" name="id_parkir" hidden>
                                 <button class="btn btn-success" type="submit">Validate</button>
                             </form>
                         </td>

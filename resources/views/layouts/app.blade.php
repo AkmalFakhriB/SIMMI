@@ -40,19 +40,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto" style="font-size:80%">
                         <li class="nav-item">
-                        <a class="nav-link" href="{{route('imamJumatIndex')}}">{{'Jadwal Imam Jumat'}}</a>
+                            <a class="nav-link" href="{{route('imamJumatIndex')}}">{{'Jadwal Imam Jumat'}}</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{route('keuanganIndex')}}">{{'Keuangan'}}</a>
+                            <a class="nav-link" href="{{route('keuanganIndex')}}">{{'Keuangan'}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('inventarisMasjidIndex')}}">{{'Inventaris Masjid'}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('jadwalKajianIndex')}}">{{'Jadwal Kajian dan Acara'}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('parkirIndex')}}">{{'Parkir'}}</a>
                         </li>
                     </ul>
                     
@@ -77,6 +74,12 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->isAdmin())
+                                    <a class="dropdown-item" href="{{ route('beritaCreate') }}">
+                                        Menambah Berita
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('beritaDaftar') }}">
+                                        Melihat Daftar Berita
+                                    </a> 
                                     <a class="dropdown-item" href="{{route('imamJumatCreate')}}">
                                         Menambah Jadwal Imam
                                     </a>
@@ -88,7 +91,17 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('parkirPendaftar') }}">
                                         Lihat Pendaftar
-                                    </a>                                    
+                                    </a>
+                                    @elseif (Auth::user()->isUser())
+                                    <a class="dropdown-item" href="{{route('parkirIndex')}}">
+                                        Daftar Kartu Parkir
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('userKegiatanList')}}">
+                                        Daftar Kajian Acara
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('userKegiatanIndex')}}">
+                                        Lihat Kajian yang diikuti
+                                    </a>                                
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -120,7 +133,7 @@
         $('#tabel-imam').DataTable();
     } );
 
-    $('#input_starttime').pickatime({});
+    // $('#input_starttime').pickatime({});
 </script>
 </body>
 </html>

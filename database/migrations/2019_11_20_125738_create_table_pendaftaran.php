@@ -13,7 +13,7 @@ class CreateTablePendaftaran extends Migration
      */
     public function up()
     {
-        Schema::create('table_pendaftaran', function (Blueprint $table) {
+        Schema::create('pendaftaran', function (Blueprint $table) {
             $table->bigIncrements('id_pendaftaran');
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_kajian_acara');
@@ -28,6 +28,6 @@ class CreateTablePendaftaran extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_pendaftaran');
+        Schema::dropIfExists('pendaftaran');
     }
 }

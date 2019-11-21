@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row" style="padding-left: 1%;padding-right: 1%">
-    <div class="column" style="width:25%;background-color:#f2f2f2">
+    <div class="column" style="width:25%;">
         Column 1
     </div>
 
@@ -20,10 +20,6 @@
                     <th>Jam</th>
                     <th>Pengisi</th>
                     <th>Penanggung Jawab</th>
-                    @if (Auth::user()->isAdmin())
-                        <th>Update</th>
-                        {{-- <th>Delete</th> --}}
-                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -34,22 +30,6 @@
                         <td>{{$datas->waktu_awal}} - {{$datas->waktu_akhir}}</td>
                         <td>{{$datas->pengisi}}</td>
                         <td>{{$datas->penanggung_jawab}}</td>
-                        @if (Auth::user()->isAdmin())
-                        <td>
-                            <form action="{{route('jadwalKajianEdit')}}" method="POST">
-                                @csrf
-                                <input type="text" value="{{$datas->id_kajian_acara}}" name="id_kajian_acara" hidden>
-                                <button class="btn btn-success" type="submit">Edit</button>
-                            </form>
-                        </td>
-                        {{-- <td>
-                            <form action="{{route('imamJumatDelete')}}" method="POST">
-                                @csrf
-                                <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
-                                <button class="btn btn-danger" type="submit">Delete</button>
-                            </form>
-                        </td> --}}
-                        @endif
                     </tr>
                 @endforeach
             </tbody>

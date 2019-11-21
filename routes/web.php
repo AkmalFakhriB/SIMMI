@@ -11,14 +11,22 @@
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
     
-    return view('welcome');
-});
+//     return view('welcome');
+// });
+
+Route::get('/', 'berita@index')->name('beritaIndex');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/berita/insert', 'berita@create')->name('beritaCreate');
+Route::post('/berita/submit', 'berita@store')->name('beritaSubmit');
+Route::get('/berita/daftar', 'berita@daftar')->name('beritaDaftar');
+Route::post('/berita/edit', 'berita@edit')->name('beritaEdit');
+Route::post('/berita/update', 'berita@update')->name('beritaUpdate');
 
 Route::get('/imamJumat', 'imamJumat@index')->name('imamJumatIndex');
 Route::post('/imamJumat/delete', 'imamJumat@delete')->name('imamJumatDelete');
@@ -46,3 +54,6 @@ Route::post('/parkir/submit',  'parkir@store')->name('parkirSubmit');
 Route::get('/parkir/pendaftar', 'parkir@lihatPendaftar')->name('parkirPendaftar');
 Route::post('/parkir/validate', 'parkir@validasi')->name('parkirValidate');
 
+Route::get('/userKegiatan/list', 'userKegiatan@list')->name('userKegiatanList');
+Route::post('/userKegiatan/daftar', 'userKegiatan@daftar')->name('userKegiatanDaftar');
+Route::get('/userKegiatan/index', 'userKegiatan@index')->name('userKegiatanIndex');
