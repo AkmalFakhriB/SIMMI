@@ -19,10 +19,14 @@
                         <th>Satuan</th>
                         <th>Kuantitas</th>
                         <th>Kondisi</th>
-                        @if (Auth::user()->isAdmin())
-                        <th>Update</th>
-                        {{-- <th>Delete</th> --}}
-                        @endif
+                        @guest
+
+                        @else
+                            @if (Auth::user()->isAdmin())
+                                <th>Update</th>
+                                {{-- <th>Delete</th> --}}
+                            @endif
+                        @endguest
                     </tr>
                 </thead>
                 <tbody>

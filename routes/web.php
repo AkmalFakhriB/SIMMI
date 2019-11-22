@@ -57,3 +57,7 @@ Route::post('/parkir/validate', 'parkir@validasi')->name('parkirValidate');
 Route::get('/userKegiatan/list', 'userKegiatan@list')->name('userKegiatanList');
 Route::post('/userKegiatan/daftar', 'userKegiatan@daftar')->name('userKegiatanDaftar');
 Route::get('/userKegiatan/index', 'userKegiatan@index')->name('userKegiatanIndex');
+
+Route::get('/barangTertinggal/index', 'barangTertinggal@index')->name('barangTertinggalIndex');
+Route::get('/barangTertinggal/insert', 'barangTertinggal@create')->name('barangTertinggalCreate');
+Route::post('/barangTertinggal/submit', 'barangTertinggal@store')->name('barangTertinggalSubmit');

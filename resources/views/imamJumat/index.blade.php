@@ -18,10 +18,14 @@
                     <th>Tanggal</th>
                     <th>Imam</th>
                     <th>Muadzin</th>
-                    @if (Auth::user()->isAdmin())
-                    <th>Update</th>
-                    <th>Delete</th>    
-                    @endif
+                    @guest
+
+                    @else
+                        @if (Auth::user()->isAdmin())
+                            <th>Update</th>
+                            <th>Delete</th>    
+                        @endif
+                    @endguest
                 </tr>
             </thead>
             <tbody>

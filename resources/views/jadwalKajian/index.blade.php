@@ -20,10 +20,14 @@
                     <th>Jam</th>
                     <th>Pengisi</th>
                     <th>Penanggung Jawab</th>
+                    @guest
+
+                    @else
                     @if (Auth::user()->isAdmin())
                         <th>Update</th>
                         {{-- <th>Delete</th> --}}
                     @endif
+                    @endguest
                 </tr>
             </thead>
             <tbody>
