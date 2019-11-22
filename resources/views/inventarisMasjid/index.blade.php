@@ -19,14 +19,12 @@
                         <th>Satuan</th>
                         <th>Kuantitas</th>
                         <th>Kondisi</th>
-                        @guest
-
-                        @else
+                        @auth
                             @if (Auth::user()->isAdmin())
                                 <th>Update</th>
                                 {{-- <th>Delete</th> --}}
-                            @endif
-                        @endguest
+                            @endif    
+                        @endauth
                     </tr>
                 </thead>
                 <tbody>
@@ -36,22 +34,24 @@
                             <td>{{$inventariss->satuan}}</td>
                             <td>{{$inventariss->kuantitas}}</td>
                             <td>{{$inventariss->kondisi}}</td>
-                            @if (Auth::user()->isAdmin())
-                            <td>
-                                <form action="{{route('inventarisMasjidEdit')}}" method="POST">
-                                    @csrf
-                                    <input type="text" value="{{$inventariss->id_inventaris}}" name="id_inventaris" hidden>
-                                    <button class="btn btn-success" type="submit">Edit</button>
-                                </form>
-                            </td>
-                            {{-- <td>
-                                <form action="{{route('imamJumatDelete')}}" method="POST">
-                                    @csrf
-                                    <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
-                            </td> --}}
-                            @endif
+                            @auth
+                                @if (Auth::user()->isAdmin())
+                                <td>
+                                    <form action="{{route('inventarisMasjidEdit')}}" method="POST">
+                                        @csrf
+                                        <input type="text" value="{{$inventariss->id_inventaris}}" name="id_inventaris" hidden>
+                                        <button class="btn btn-success" type="submit">Edit</button>
+                                    </form>
+                                </td>
+                                {{-- <td>
+                                    <form action="{{route('imamJumatDelete')}}" method="POST">
+                                        @csrf
+                                        <input type="text" value="{{$imams->id_imam_jumat}}" name="id_imam_jumat" hidden>
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </td> --}}
+                                @endif
+                            @endauth
                         </tr>
                     @endforeach
                 </tbody>

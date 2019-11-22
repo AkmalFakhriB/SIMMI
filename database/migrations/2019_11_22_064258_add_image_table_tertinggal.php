@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddImageColumnTertinggal extends Migration
+class AddImageTableTertinggal extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddImageColumnTertinggal extends Migration
      */
     public function up()
     {
-        Schema::table('tertinggal', function (Blueprint $table)
-        {
-            $table->binary('image');
+        Schema::table('tertinggal', function (Blueprint $table) {
+            $table->string('image');
         });
     }
 

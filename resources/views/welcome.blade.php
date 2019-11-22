@@ -20,6 +20,8 @@
         @endforeach
     </div>
 
-    <div class="column" style="width:25%">Column 3</div>
+    <div class="column" style="width:25%">
+        <p style="text-align: center;"><iframe src="https://www.jadwalsholat.org/adzan/ajax.row.php?id=265" frameborder="0" width="400" height="400"></iframe></p>
+    </div>
 </div>
 @endsection
