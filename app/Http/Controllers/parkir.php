@@ -63,19 +63,6 @@ class parkir extends Controller
             $error = 'Anda sudah mendaftarkan kartu parkir anda';
             return view('parkir/index', ['error'=>$error]);
         }
-        
-        $data = new parkirModel;
-        $data->id_user = Auth::user()->id;
-        $data->merk_motor = $request->merk_motor;
-        $data->plat_nomor = $request->plat_nomor;
-        $data->warna_motor = $request->warna_motor;
-        $data->status = '0';
-        $success = 'Submit Data Berhasil dilakukan';
-        $data->save();
-        $user = Auth::user();
-        $user->id_parkir = $data->id;
-        $user->save();
-        return view('parkir/index', ['success'=>$success]);
     }
 
     public function validasi(Request $request)

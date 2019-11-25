@@ -7,6 +7,15 @@ use App\barangTertinggalModel;
 
 class barangTertinggal extends Controller
 {
+    public $path;
+    public $dimensions;
+
+    public function __construct()
+    {
+        $this->path_gambar_barang = public_path('gambar_barang');
+        $this->dimension = '500';
+    }
+
     public function index()
     {
         $data = barangTertinggalModel::all();
@@ -25,11 +34,21 @@ class barangTertinggal extends Controller
         $data->barang = $request->barang;
         $data->lokasi = $request->lokasi;
         $data->uraian = $request->uraian;
-        $data->image = base64_encode($request->image);
-        dd(base64_encode(file_get_contents($request->image)));
+        $data->image = '0';
         $data->status = '0';
         $success = 'Insert data berhasil dilakukan';
         $data->save();
+
+        $file = $request->file('image');
+        return $file;
+        $ext = $file->getClientOriginalExtension();
+        $fileName = $data->id . '.' . $ext;
+        $tujuan_upload = $this->path_gambar_barang;
+        $file->move($tujuan_upload, $fileName);
+        barangTertinggalModel::where('id', $data->id)->update([
+            'image' => $fileName
+        ]);
+
         return view('barangTertinggal/insert', ['success'=>$success]);
     }
 }

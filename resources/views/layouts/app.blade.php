@@ -54,6 +54,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('barangTertinggalIndex')}}">{{'Barang Tertinggal'}}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('jadwalPuasaIndex')}}">{{'Jadwal Puasa Sunnah'}}</a>
+                        </li>
                     </ul>
                     
 
@@ -97,6 +100,9 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('barangTertinggalCreate') }}">
                                         Menambah Barang Tertinggal
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('jadwalPuasaCreate') }}">
+                                        Menambah Jadwal Puasa Sunnah
                                     </a>
                                     @elseif (Auth::user()->isUser())
                                     <a class="dropdown-item" href="{{route('parkirIndex')}}">
