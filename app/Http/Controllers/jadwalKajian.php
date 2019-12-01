@@ -59,7 +59,7 @@ class jadwalKajian extends Controller
         else if (jadwalKajianModel::where('tanggal_kajian', '=', $request->tanggal_kajian)->exists()) 
         {
             $failure = 'Tanggal tersebut sudah terjadwal';
-            return view('imamJumat/insert', ['failure'=>$failure]);
+            return view('jadwalKajian/insert', ['failure'=>$failure]);
         }
         else 
         {

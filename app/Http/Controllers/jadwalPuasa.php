@@ -23,9 +23,17 @@ class jadwalPuasa extends Controller
         $data = new puasaModel;
         $data->nama_puasa = $request->nama_puasa;
         $data->tanggal = $request->tanggal;
-        $success = 'Submit Data Berhasil dilakukan';
-        $data->save();
-        return view('jadwalPuasa/insert', ['success'=>$success]);
+        if(puasaModel::where('tanggal', '=', $request->tanggal)->exists())
+        {
+            $failure = 'Tanggal tersebut sudah terjadwal';
+            return view('jadwalPuasa/insert', ['failure'=>$failure]);
+        }
+        else
+        {
+            $success = 'Submit Data Berhasil dilakukan';
+            $data->save();
+            return view('jadwalPuasa/insert', ['success'=>$success]);
+        }
     }
 
     public function edit(Request $request)

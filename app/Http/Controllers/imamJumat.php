@@ -43,10 +43,13 @@ class imamJumat extends Controller
         $imam->nama_imam = $request->imam;
         $imam->muadzin = $request->muadzin;
         $imam->status = '0';
-        if (imamJumatModel::where('tanggal', '=', $request->tanggal)->exists()) {
+        if (imamJumatModel::where('tanggal', '=', $request->tanggal)->exists()) 
+        {
             $failure = 'Tanggal tersebut sudah terjadwal';
             return view('imamJumat/insert', ['failure'=>$failure]);
-        } else {
+        } 
+        else 
+        {
             $success = 'Insert data berhasil dilakukan';
             $imam->save();
             return view('imamJumat/insert', ['success'=>$success]);

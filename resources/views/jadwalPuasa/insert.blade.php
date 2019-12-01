@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        @isset($alert)
+        @isset($failure)
             <div class="alert alert-danger">
-                {{$alert}}
+                {{$failure}}
             </div>
         @endisset
         @isset($success)
