@@ -9,6 +9,11 @@
                 {{$success}}
             </div>
             @endisset
+            @isset($failure)
+            <div class="alert alert-danger">
+                {{$failure}}
+            </div>
+            @endisset
             <div class="card">
                 <div class="card-header">Menambah Jadwal Imam</div>
                 <div class="card-body">
