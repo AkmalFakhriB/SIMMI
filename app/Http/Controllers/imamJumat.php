@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\imamJumatModel;
+use DateTime;
+use DateTimeZone;
 
 class imamJumat extends Controller
 {
@@ -15,7 +17,10 @@ class imamJumat extends Controller
      */
     public function index()
     {
-        $imam=imamJumatModel::where('status', '0')->get();
+        $dateTime = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+        $tanggal_sekarang = $dateTime->format("Y-m-d");
+        // var_dump($tanggal_sekarang); die();
+        $imam=imamJumatModel::where('status', '0')->where('tanggal', '>=', $tanggal_sekarang)->get();
         return view('imamJumat/index', ['imam'=>$imam]);
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\jadwalKajianModel;
+use DateTime;
+use DateTimeZone;
 
 class jadwalKajian extends Controller
 {
@@ -14,7 +16,9 @@ class jadwalKajian extends Controller
      */
     public function index()
     {
-        $data = jadwalKajianModel::all();
+        $dateTime = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+        $tanggal_sekarang = $dateTime->format("Y-m-d");
+        $data = jadwalKajianModel::where('tanggal_kajian', '>=', $tanggal_sekarang)->get();
         return view('jadwalKajian/index', ['data'=>$data]);
     }
 
