@@ -48,20 +48,25 @@ class jadwalKajian extends Controller
         $data->status = '0';
         if ($data->waktu_awal == $data->waktu_akhir) 
         {
-            $alert = 'Minimal Durasi Kajian 1 jam';
-            return view('jadwalKajian/insert', ['alert'=>$alert]);
+            $failure = 'Minimal Durasi Kajian 1 jam';
+            return view('jadwalKajian/insert', ['failure'=>$failure]);
+        }
+        else if ($data->waktu_awal > $data->waktu_akhir)
+        {
+            $failure = 'Waktu Mulai Harus Lebih Kecil dari Waktu Selesai';
+            return view('jadwalKajian/insert', ['failure'=>$failure]);
         } 
-        // elseif ($data->WaktuMulai > $data->WaktuSelesai)
-        // {
-        //     $alert = 'Waktu Mulai Harus Lebih Kecil dari Waktu Selesai';
-        //     return view('jadwalKajian/insert', ['alert'=>$alert]);
-        // } 
-        // else 
-        // {
+        else if (jadwalKajianModel::where('tanggal_kajian', '=', $request->tanggal_kajian)->exists()) 
+        {
+            $failure = 'Tanggal tersebut sudah terjadwal';
+            return view('imamJumat/insert', ['failure'=>$failure]);
+        }
+        else 
+        {
             $success = 'Submit Data Berhasil dilakukan';
             $data->save();
             return view('jadwalKajian/insert', ['success'=>$success]);
-        // }
+        }
     }
 
     /**
