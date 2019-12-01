@@ -104,6 +104,9 @@
                                     <a class="dropdown-item" href="{{ route('jadwalPuasaCreate') }}">
                                         Menambah Jadwal Puasa Sunnah
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('keuanganCreate') }}">
+                                        Menambah File Rekap Keuangan
+                                    </a>
                                     @elseif (Auth::user()->isUser())
                                     <a class="dropdown-item" href="{{route('parkirIndex')}}">
                                         Daftar Kartu Parkir
