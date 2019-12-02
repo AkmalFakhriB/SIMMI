@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="row" style="padding-left: 1%;padding-right: 1%">
-    <div class="column" style="width:25%;background-color:#f2f2f2">
-        Column 1
+    <div class="column" style="width:25%;background-color:#fff">
     </div>
 
     <div class="column" style="width:50%; height:100%; background-color:white">
@@ -12,6 +11,8 @@
             {{ session('status') }}
         </div>
     @endif
+    <div class="card">
+    <div class="card-header">Pendaftaran Kartu Parkir</div>
         <table id="tabel-imam" class="cell-border compact hover">
             <thead>
                 <tr>
@@ -41,8 +42,9 @@
             </tbody>
         </table>   
     </div>
+    </div>
 
-    <div class="column" style="width:25%">Column 3</div>
+    <div class="column" style="width:25%"></div>
 </div>
 
 <script>

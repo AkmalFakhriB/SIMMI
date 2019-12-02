@@ -3,7 +3,6 @@
 @section('content')
 <div class="row" style="padding-left: 1%;padding-right: 1%">
     <div class="column" style="width:25%;">
-        Column 1
     </div>
 
     <div class="column" style="width:50%; height:100%; background-color:white">
@@ -12,6 +11,8 @@
                 {{ session('status') }}
             </div>
         @endif
+        <div class="card">
+                <div class="card-header">Daftar Kajian Acara</div>
         <table id="tabel-imam" class="cell-border compact hover">
             <thead>
                 <tr>
@@ -43,7 +44,8 @@
             </tbody>
         </table>   
     </div>
+    </div>
 
-    <div class="column" style="width:25%">Column 3</div>
+    <div class="column" style="width:25%"></div>
 </div>
 @endsection
