@@ -9,10 +9,15 @@
                 {{$success}}
             </div>
             @endisset
+            @isset($failure)
+            <div class="alert alert-danger">
+                {{$failure}}
+            </div>
+            @endisset
             <div class="card">
                 <div class="card-header">Menambah Jadwal Imam</div>
                 <div class="card-body">
-                    <form action="submit" method="POST">
+                    <form action="{{route('imamJumatSubmit')}}" method="POST">
                         @csrf
                         <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-left">Tanggal</label>

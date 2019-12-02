@@ -10,7 +10,8 @@
                 <img src="images/banner-icon-1-6.png" alt="Awesome Image" class="bubble-6" />        
 
 <div class="row" style="padding-left: 1%;padding-right: 1%">
-    <div class="column" style="width:25%;background-color:#fcfcfc">
+    <div class="column" style="width:25%">
+        Column 1
     </div>
 
     <div class="column" style="width:50%; height:100%; background-color:white; ;border:1px solid rgba(0, 0, 0, 0.125);border-radius: 0.25rem">
@@ -26,7 +27,7 @@
             <div class="card">
                 <div class="card-header">{{$datas->barang}}</div>
                 <div class="card-body">
-                    <img src="data:image/jpg;base64, {{$datas->image}}" >
+                    <img src="../public/gambar_barang/<?php echo $datas->image; ?>.png" >
                 </div>
             </div>
         @endforeach  

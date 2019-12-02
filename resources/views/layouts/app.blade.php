@@ -96,6 +96,55 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->isAdmin())
+                                    <a class="dropdown-item" href="{{ route('beritaCreate') }}">
+                                        Menambah Berita
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('beritaDaftar') }}">
+                                        Melihat Daftar Berita
+                                    </a> 
+                                    <a class="dropdown-item" href="{{route('imamJumatCreate')}}">
+                                        Menambah Jadwal Imam
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('inventarisMasjidCreate')}}">
+                                        Menambah Daftar Inventaris
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('jadwalKajianCreate')}}">
+                                        Menambah Jadwal Kajian
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('parkirPendaftar') }}">
+                                        Lihat Pendaftar
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('barangTertinggalCreate') }}">
+                                        Menambah Barang Tertinggal
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('jadwalPuasaCreate') }}">
+                                        Menambah Jadwal Puasa Sunnah
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('keuanganCreate') }}">
+                                        Menambah File Rekap Keuangan
+                                    </a>
+                                    @elseif (Auth::user()->isUser())
+                                    <a class="dropdown-item" href="{{route('parkirIndex')}}">
+                                        Daftar Kartu Parkir
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('userKegiatanList')}}">
+                                        Daftar Kajian Acara
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('userKegiatanIndex')}}">
+                                        Lihat Kajian yang diikuti
+                                    </a> 
+                                    <a class="dropdown-item" href="{{route('userKegiatanUpload')}}">
+                                        Upload Berkas
+                                    </a>                               
                                     @endif
                                 @else
                                     <li class="scrollToLink">

@@ -10,21 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class parkir extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('parkir/index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function lihatPendaftar()
     {
         $data = DB::table('parkir')
@@ -37,12 +27,6 @@ class parkir extends Controller
         return view('parkir/daftar', ['data'=>$data]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // print_r(Auth::user()->id);
@@ -71,50 +55,5 @@ class parkir extends Controller
         parkirModel::where('id_parkir', $request->id_parkir)
         ->update(['status'=>'1']);
         return redirect('parkir/pendaftar')->with('status', 'Validasi telah berhasil di lakukan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\parkir  $parkir
-     * @return \Illuminate\Http\Response
-     */
-    public function show(parkir $parkir)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\parkir  $parkir
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(parkir $parkir)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\parkir  $parkir
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, parkir $parkir)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\parkir  $parkir
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(parkir $parkir)
-    {
-        //
     }
 }

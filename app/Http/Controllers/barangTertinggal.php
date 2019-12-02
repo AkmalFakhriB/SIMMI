@@ -40,13 +40,12 @@ class barangTertinggal extends Controller
         $data->save();
 
         $file = $request->file('image');
-        return $file;
         $ext = $file->getClientOriginalExtension();
         $fileName = $data->id . '.' . $ext;
         $tujuan_upload = $this->path_gambar_barang;
         $file->move($tujuan_upload, $fileName);
-        barangTertinggalModel::where('id', $data->id)->update([
-            'image' => $fileName
+        barangTertinggalModel::where('id_tertinggal', $data->id)->update([
+            'image' => $data->id
         ]);
 
         return view('barangTertinggal/insert', ['success'=>$success]);

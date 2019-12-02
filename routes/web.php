@@ -33,15 +33,18 @@ Route::post('/imamJumat/delete', 'imamJumat@delete')->name('imamJumatDelete');
 Route::post('/imamJumat/edit', 'imamJumat@edit')->name('imamJumatEdit');
 Route::post('/imamJumat/update', 'imamJumat@update')->name('imamJumatUpdate');
 Route::get('/imamJumat/insert', 'imamJumat@create')->name('imamJumatCreate');
-Route::post('/imamJumat/submit', 'imamJumat@store');
+Route::post('/imamJumat/submit', 'imamJumat@store')->name('imamJumatSubmit');
 
 Route::get('/keuangan', 'keuangan@index')->name('keuanganIndex');
+Route::get('/keuangan/insert', 'keuangan@create')->name('keuanganCreate');
+Route::post('/keuangan/submit', 'keuangan@store')->name('keuanganSubmit');
+Route::post('/keuangan/download', 'keuangan@Download')->name('keuanganDownload');
 
 Route::get('/inventarisMasjid', 'inventarisMasjid@index')->name('inventarisMasjidIndex');
 Route::post('/inventarisMasjid/edit', 'inventarisMasjid@edit')->name('inventarisMasjidEdit');
 Route::post('/inventarisMasjid/update', 'inventarisMasjid@update')->name('inventarisMasjidUpdate');
 Route::get('/inventarisMasjid/insert', 'inventarisMasjid@create')->name('inventarisMasjidCreate');
-Route::post('/inventarisMasjid/submit', 'inventarisMasjid@store');
+Route::post('/inventarisMasjid/submit', 'inventarisMasjid@store')->name('inventarisMasjidSubmit');
 
 Route::get('/jadwalKajian', 'jadwalKajian@index')->name('jadwalKajianIndex');
 Route::get('/jadwalKajian/insert', 'jadwalKajian@create')->name('jadwalKajianCreate');
@@ -57,6 +60,8 @@ Route::post('/parkir/validate', 'parkir@validasi')->name('parkirValidate');
 Route::get('/userKegiatan/list', 'userKegiatan@list')->name('userKegiatanList');
 Route::post('/userKegiatan/daftar', 'userKegiatan@daftar')->name('userKegiatanDaftar');
 Route::get('/userKegiatan/index', 'userKegiatan@index')->name('userKegiatanIndex');
+Route::get('/userKegiatan/upload', 'userKegiatan@upload')->name('userKegiatanUpload');
+Route::post('/userKegiatan/Submit', 'userKegiatan@store')->name('userKegiatanSubmit');
 
 Route::get('/barangTertinggal', 'barangTertinggal@index')->name('barangTertinggalIndex');
 Route::get('/barangTertinggal/insert', 'barangTertinggal@create')->name('barangTertinggalCreate');
