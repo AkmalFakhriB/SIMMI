@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 /public/gambar_barang
 /public/rekap_bulanan
+/public/bukti_verifikasi

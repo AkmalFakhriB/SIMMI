@@ -60,6 +60,8 @@ Route::post('/parkir/validate', 'parkir@validasi')->name('parkirValidate');
 Route::get('/userKegiatan/list', 'userKegiatan@list')->name('userKegiatanList');
 Route::post('/userKegiatan/daftar', 'userKegiatan@daftar')->name('userKegiatanDaftar');
 Route::get('/userKegiatan/index', 'userKegiatan@index')->name('userKegiatanIndex');
+Route::get('/userKegiatan/upload', 'userKegiatan@upload')->name('userKegiatanUpload');
+Route::post('/userKegiatan/Submit', 'userKegiatan@store')->name('userKegiatanSubmit');
 
 Route::get('/barangTertinggal', 'barangTertinggal@index')->name('barangTertinggalIndex');
 Route::get('/barangTertinggal/insert', 'barangTertinggal@create')->name('barangTertinggalCreate');

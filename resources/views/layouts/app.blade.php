@@ -116,7 +116,10 @@
                                     </a>
                                     <a class="dropdown-item" href="{{route('userKegiatanIndex')}}">
                                         Lihat Kajian yang diikuti
-                                    </a>                                
+                                    </a> 
+                                    <a class="dropdown-item" href="{{route('userKegiatanUpload')}}">
+                                        Upload Berkas
+                                    </a>                               
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\jadwalKajianModel;
 use App\pendaftaranModel;
+use App\User;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -12,6 +13,15 @@ use Illuminate\Support\Facades\DB;
 
 class userKegiatan extends Controller
 {
+    public $path;
+    public $dimensions;
+
+    public function __construct()
+    {
+        $this->path_bukti_verifikasi = public_path('bukti_verifikasi');
+        $this->dimension = '500';
+    }
+
     public function list()
     {
         $dateTime = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
@@ -38,5 +48,25 @@ class userKegiatan extends Controller
         ->where('pendaftaran.id_user', '=', Auth::user()->id)
         ->get();
         return view('userKegiatan/index', ['data'=>$data]);
+    }
+
+    public function upload()
+    {
+        return view('userKegiatan/upload');
+    }
+
+    public function store(Request $request)
+    {
+        $file = $request->file('berkas');
+        $ext = $file->getClientOriginalExtension();
+        $fileName = Auth::user()->id . '.' . $ext;
+        $tujuan_upload = $this->path_bukti_verifikasi;
+        $file->move($tujuan_upload, $fileName);
+        User::where('id', Auth::user()->id)->update([
+            'status' => '1'
+        ]);
+
+        $success = 'Insert data berhasil dilakukan';
+        return view('userKegiatan/upload', ['success'=>$success]);
     }
 }
