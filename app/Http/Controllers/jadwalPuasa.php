@@ -27,6 +27,7 @@ class jadwalPuasa extends Controller
         $data = new puasaModel;
         $data->nama_puasa = $request->nama_puasa;
         $data->tanggal = $request->tanggal;
+        $data->status = '0';
         if(puasaModel::where('tanggal', '=', $request->tanggal)->exists())
         {
             $failure = 'Tanggal tersebut sudah terjadwal';
