@@ -9,11 +9,6 @@ use DateTimeZone;
 
 class jadwalKajian extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $dateTime = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
@@ -22,22 +17,11 @@ class jadwalKajian extends Controller
         return view('jadwalKajian/index', ['data'=>$data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('jadwalKajian/insert');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // print_r($request->input());
@@ -73,36 +57,12 @@ class jadwalKajian extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\jadwalKajian  $jadwalKajian
-     * @return \Illuminate\Http\Response
-     */
-    public function show(jadwalKajian $jadwalKajian)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\jadwalKajian  $jadwalKajian
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request)
     {
         $data = jadwalKajianModel::where('id_kajian_acara', $request->id_kajian_acara)->firstorfail();
         return view('jadwalKajian/update', ['data'=>$data]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\jadwalKajian  $jadwalKajian
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         jadwalKajianModel::where('id_kajian_acara', $request->id_kajian_acara)
@@ -116,16 +76,5 @@ class jadwalKajian extends Controller
             'penanggung_jawab' => $request->penanggung_jawab
         ]);
         return redirect('jadwalKajian')->with('status', 'Update telah berhasil dilakukan');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\jadwalKajian  $jadwalKajian
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(jadwalKajian $jadwalKajian)
-    {
-        //
     }
 }

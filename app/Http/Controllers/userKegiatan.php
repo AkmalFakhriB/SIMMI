@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\jadwalKajianModel;
 use App\pendaftaranModel;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +14,9 @@ class userKegiatan extends Controller
 {
     public function list()
     {
-        $data = jadwalKajianModel::where('id_user', '!=', Auth::user()->id);
+        $dateTime = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+        $tanggal_sekarang = $dateTime->format("Y-m-d");
+        $data = jadwalKajianModel::where('tanggal_kajian', '>=', $tanggal_sekarang)->get();
         return view('userKegiatan/list', ['data'=>$data]);
     }
 

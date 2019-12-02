@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\puasaModel;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 
 class jadwalPuasa extends Controller
 {
     public function index()
     {
-        $data = puasaModel::where('status', '0')->get();
+        $dateTime = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+        $tanggal_sekarang = $dateTime->format("Y-m-d");
+        $data = puasaModel::where('status', '0')->where('tanggal', '>=', $tanggal_sekarang)->get();
         return view('jadwalPuasa/index', ['data'=>$data]);
     }
 
